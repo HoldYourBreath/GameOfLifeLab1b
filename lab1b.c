@@ -1,4 +1,4 @@
-/*
+﻿/*
  * lab1b.c
  *
  *  Created on:
@@ -9,6 +9,7 @@
 #include "lifegame.h"
 
 /* add whatever other includes here */
+#include <stdio.h>
 
 /* number of generations to evolve the world */
 #define NUM_GENERATIONS 50
@@ -32,19 +33,42 @@ int num_neighbors(int x, int y);
 
 int main(int argc, char ** argv)
 {
-	int n;
+	/*Description:
+
+	1-Initialize world from a file
+	2	-The name of the ﬁle to load will be speciﬁed in the ﬁrst command line argument passed to the executable.
+	3	-If no file is specified, you should default to initializing the world to the hard-coded default "glider" patterns
+	4-Loop next_generation NUM_GENERATIONS times
+	5-Output the final state to console
+	6-Save the final output to the file "world.txt"
+	*/
+
+	//1-Initialize world from a file
+	initialize_world(); //TODO: Disable when working from file 
+	//iinitialize_world_from_file("filename.txt"); TODO: Enable when working from file
+
+	//2 - The name of the ﬁle to load will be speciﬁed in the ﬁrst command line argument passed to the executable.
+
+	//3 - If no file is specified, you should default to initializing the world to the hard - coded default "glider" patterns
+
+	//4-Loop next_generation NUM_GENERATIONS times
+	int n = 0;
+	for (n = 0; n < NUM_GENERATIONS; n++)
+	{
+		next_generation();
+	}
+	//5 - Output the final state to console
+	output_world();
+
+	//6 Save the final output to the file "world.txt" //output_world prints the world to console, which can't be used for this
+	save_world_to_file("world.txt");
+
 
 	/* TODO: initialize the world, from file argv[1]
-	   if command line argument provided (argc > 1), or
-	   using hard-coded pattern (use Part A) otherwise */
-
-
-	for (n = 0; n < NUM_GENERATIONS; n++)
-		next_generation();
-
+	if command line argument provided (argc > 1), or
+	using hard-coded pattern (use Part A) otherwise */
 	/* TODO: output final world state to console and save
-	   world to file "world.txt" in current directory */
-
+	world to file "world.txt" in current directory */
 
 	return 0;
 }
