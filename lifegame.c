@@ -54,7 +54,7 @@ void initialize_world_from_file(const char * filename) {
 	/* Read a characters from the file and display it */
 	//4 - Read the state of the world from a file with name "filename".
 	int mychar;
-	while ((mychar = fgetc(filename)) != EOF)
+	while ((mychar = fgetc(pfile)) != EOF)
 		putchar(mychar);
 	putchar('\n');
 
@@ -68,7 +68,7 @@ void initialize_world_from_file(const char * filename) {
 
 	//10 - Close the file
 	fclose(pfile);
-	remove(filename);
+	//remove(filename);
 
 }
 
