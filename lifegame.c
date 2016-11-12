@@ -10,6 +10,7 @@
 #include <string.h>
 #include <errno.h>
 #include "lifegame.h"
+#include <errno.h>
 
 /* character representations of cell states */
 #define CHAR_ALIVE '*'
@@ -24,50 +25,50 @@ static int nextstates[WORLDWIDTH][WORLDHEIGHT];
 /* functions to write for Part B of lab */
 void initialize_world_from_file(const char * filename) {
 	/* Description:
-	1-Open the filename
-	2-Read the state of the world from a file with name "filename". //I assume the state is the picture?
-	   3-Assume file exists, is readable
-	   4-Assumue the ith character of the jth line (zero-indexed) describes
-	   world[i][j] according to the characters CHAR_ALIVE and CHAR_DEAD
-	   5-Assume a line does not contain more than 256 characters (including newline). 
-	   6-If a line doesn't contain WORLDWIDTH characters, remaining cells in line are presumed DEAD.
-	   7-Similarly, if the file does not contain WORLDHEIGHT lines, remaining lines are presumed dead.
-	   8-On error, print some useful error message and call abort(). //DONE
-	   9-Reset the next generation to DEAD 
-	 */
+	1-Open the file "filename"
+	2-Assume file exists, is readable
+	3-On error, print some useful error message and call abort(). //DONE
+	4-Read the state of the world from a file with name "filename". //I assume the state is the picture?
+	5-Assumue the ith character of the jth line (zero-indexed) describes world[i][j] according to the characters CHAR_ALIVE and CHAR_DEAD
+	6-Assume a line does not contain more than 256 characters (including newline). 
+	7-If a line doesn't contain WORLDWIDTH characters, remaining cells in line are presumed DEAD.
+	8-Similarly, if the file does not contain WORLDHEIGHT lines, remaining lines are presumed dead.
+	9-Reset the next generation to DEAD 
+	10-Close the file
+	*/
 
-	//1-Open the filename
-	
+	// 1 - Open the file "filename"
+	FILE *pfile;
 	pfile = fopen(filename, "r");
+	//FILE pfile = fopen(filename, "r");
+
 	// 2-Assume file exists, is readable
 	if (pfile == NULL)
 	{
-	//	8 - On error, print some useful error message and call abort().
+	//	3 - On error, print some useful error message and call abort().
+		printf("Oh dear, something went wrong with read()! %s\n", strerror(errno));
 		printf("Error opening %s for reading. Program terminated.", filename);
 		abort();
 	}
 
-	//9-Reset the next generation to DEAD
-
-
 	/* Read a characters from the file and display it */
-	//2 - Read the state of the world from a file with name "filename".
+	//4 - Read the state of the world from a file with name "filename".
+	int mychar;
 	while ((mychar = fgetc(filename)) != EOF)
 		putchar(mychar);
 	putchar('\n');
 
+	//  5 - Assumue the ith character of the jth line(zero - indexed) describes	world[i][j] according to the characters CHAR_ALIVE and CHAR_DEAD
+	//	6 - Assume a line does not contain more than 256 characters(including newline).
+	//	7 - If a line doesn't contain WORLDWIDTH characters, remaining cells in line are presumed DEAD.
+	//	8 - Similarly, if the file does not contain WORLDHEIGHT lines, remaining lines are presumed dead.
+
+
+	// 9-Reset the next generation to DEAD
+
+	//10 - Close the file
 	fclose(pfile);
 	remove(filename);
-
-
-	//	4 - Assumue the ith character of the jth line(zero - indexed) describes
-	//	world[i][j] according to the characters CHAR_ALIVE and CHAR_DEAD
-	//	5 - Assume a line does not contain more than 256 characters(including newline).
-	//	6 - If a line doesn't contain WORLDWIDTH characters, remaining cells in line are presumed DEAD.
-	//	7 - Similarly, if the file does not contain WORLDHEIGHT lines, remaining lines are presumed dead.
-
-	
-
 
 }
 

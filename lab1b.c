@@ -44,9 +44,9 @@ int main(int argc, char ** argv)
 	*/
 
 	//1-Initialize world from a file
-	initialize_world(); //TODO: Disable when working from file 
-	//iinitialize_world_from_file("filename.txt"); TODO: Enable when working from file
-
+	//initialize_world(); //TODO: Disable when working from file 
+	initialize_world_from_file("C:\\Personal\\Programming\\gameoflife\\lab1b\\filename.txt"); //TODO: Enable when working from file
+	//output_world();
 	//2 - The name of the ﬁle to load will be speciﬁed in the ﬁrst command line argument passed to the executable.
 
 	//3 - If no file is specified, you should default to initializing the world to the hard - coded default "glider" patterns
@@ -57,6 +57,7 @@ int main(int argc, char ** argv)
 	{
 		next_generation();
 	}
+
 	//5 - Output the final state to console
 	output_world();
 
