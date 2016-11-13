@@ -40,7 +40,6 @@ void initialize_world_from_file(const char * filename) {
 	// 1 - Open the file "filename"
 	FILE *pfile;
 	pfile = fopen(filename, "r");
-	//FILE pfile = fopen(filename, "r");
 
 	// 2-Assume file exists, is readable
 	if (pfile == NULL)
@@ -85,13 +84,15 @@ void save_world_to_file(const char * filename) {
 	it to resume a game later
 	 */
 
-	/*FILE * fPointer;
-	fPointer = fopen("bacon.txt, "w");
-		fprintf(fPointer, "I love cheese\n");
-	fclose(fPointer);*/
+	FILE * sFile;
+	sFile = freopen(filename, "w", stdout);
+	if (sFile != NULL)
+	{
+		output_world();
+		fclose(sFile);
+	}
 
 	return 0;
-
 }
 
 /* you shouldn't need to edit anything below this line */
@@ -144,6 +145,8 @@ void finalize_evolution(void) {
 	}
 }
 
+
+// Output world set the current state of the world to stdout
 void output_world(void) {
 	char worldstr[2*WORLDWIDTH+2];
 	int i, j;

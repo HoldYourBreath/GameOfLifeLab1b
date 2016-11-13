@@ -12,7 +12,7 @@
 #include <stdio.h>
 
 /* number of generations to evolve the world */
-#define NUM_GENERATIONS 50
+#define NUM_GENERATIONS 5
 
 /* functions to implement -- can copy from Part A */
 
@@ -44,9 +44,11 @@ int main(int argc, char ** argv)
 	*/
 
 	//1-Initialize world from a file
-	//initialize_world(); //TODO: Disable when working from file 
+	initialize_world(); //TODO: Disable when working from file 
 	//initialize_world_from_file("C:\\Personal\\Programming\\gameoflife\\lab1b\\filename.txt"); //TODO: Enable when working from file
-	initialize_world_from_file("C:\\Users\\JannePC-Skylake\\filename.txt");
+
+	//initialize_world_from_file("C:\\Users\\JannePC-Skylake\\filename2.txt");  //Working!!
+	
 	//output_world();
 	//2 - The name of the ﬁle to load will be speciﬁed in the ﬁrst command line argument passed to the executable.
 
@@ -63,7 +65,7 @@ int main(int argc, char ** argv)
 	output_world();
 
 	//6 Save the final output to the file "world.txt" //output_world prints the world to console, which can't be used for this
-	save_world_to_file("world.txt");
+	save_world_to_file("C:\\Users\\JannePC-Skylake\\world.txt");
 
 
 	/* TODO: initialize the world, from file argv[1]
