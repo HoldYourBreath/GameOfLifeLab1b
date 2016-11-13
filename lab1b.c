@@ -44,10 +44,10 @@ int main(int argc, char ** argv)
 	*/
 
 	//1-Initialize world from a file
-	initialize_world(); //TODO: Disable when working from file 
+	//initialize_world(); //TODO: Disable when working from file 
 	//initialize_world_from_file("C:\\Personal\\Programming\\gameoflife\\lab1b\\filename.txt"); //TODO: Enable when working from file
 
-	//initialize_world_from_file("C:\\Users\\JannePC-Skylake\\filename2.txt");  //Working!!
+	initialize_world_from_file("C:\\Users\\JannePC-Skylake\\filename2.txt");  //Working!!
 	
 	//output_world();
 	//2 - The name of the ﬁle to load will be speciﬁed in the ﬁrst command line argument passed to the executable.
@@ -59,10 +59,19 @@ int main(int argc, char ** argv)
 	for (n = 0; n < NUM_GENERATIONS; n++)
 	{
 		next_generation();
+		//output_world();
+
+		// Add time delay for graphical representation
+		int c = 1, d = 1;
+		for (c = 1; c <= 32767; c++)
+			for (d = 1; d <= 32767; d++)
+			{
+			}
+		//system("cls");
 	}
 
 	//5 - Output the final state to console
-	output_world();
+	//output_world();
 
 	//6 Save the final output to the file "world.txt" //output_world prints the world to console, which can't be used for this
 	save_world_to_file("C:\\Users\\JannePC-Skylake\\world.txt");

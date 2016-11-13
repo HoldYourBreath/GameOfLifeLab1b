@@ -42,7 +42,7 @@ void initialize_world_from_file(const char * filename) {
 	pfile = fopen(filename, "r");
 
 	// 2-Assume file exists, is readable
-	if (pfile == NULL)
+ 	if (pfile == NULL)
 	{
 	//	3 - On error, print some useful error message and call abort().
 		printf("Oh dear, something went wrong with read()! %s\n", strerror(errno));
@@ -56,6 +56,7 @@ void initialize_world_from_file(const char * filename) {
 	while ((mychar = fgetc(pfile)) != EOF)
 		putchar(mychar);
 	putchar('\n');
+	//output_world();
 
 	//  5 - Assumue the ith character of the jth line(zero - indexed) describes	world[i][j] according to the characters CHAR_ALIVE and CHAR_DEAD
 	//	6 - Assume a line does not contain more than 256 characters(including newline).
@@ -98,14 +99,14 @@ void save_world_to_file(const char * filename) {
 /* you shouldn't need to edit anything below this line */
 
 /* initializes the world to a hard-coded pattern, and resets
-   all the cells in the next generation to DEAD */
+   all the cells in the next generation to DEAD. This function doesn't draw anything */
 void initialize_world(void) {
 	int i, j;
 
 	for (i = 0; i < WORLDWIDTH; i++)
 		for (j = 0; j < WORLDHEIGHT; j++)
 			world[i][j] = nextstates[i][j] = DEAD;
-	/* pattern "glider" */
+	/* pattern "glider", these are the active cells */
 	world[1][2] = ALIVE;
 	world[3][1] = ALIVE;
 	world[3][2] = ALIVE;
