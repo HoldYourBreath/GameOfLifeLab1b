@@ -59,7 +59,7 @@ int main(int argc, char ** argv)
 	for (n = 0; n < NUM_GENERATIONS; n++)
 	{
 		next_generation();
-		//output_world();
+		output_world();
 
 		// Add time delay for graphical representation
 		int c = 1, d = 1;

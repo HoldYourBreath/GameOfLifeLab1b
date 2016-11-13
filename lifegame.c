@@ -42,21 +42,42 @@ void initialize_world_from_file(const char * filename) {
 	pfile = fopen(filename, "r");
 
 	// 2-Assume file exists, is readable
- 	if (pfile == NULL)
+ 	/*if (pfile == NULL)
 	{
 	//	3 - On error, print some useful error message and call abort().
 		printf("Oh dear, something went wrong with read()! %s\n", strerror(errno));
 		printf("Error opening %s for reading. Program terminated.", filename);
 		abort();
-	}
+	}*/
 
 	/* Read a characters from the file and display it */
 	//4 - Read the state of the world from a file with name "filename".
-	int mychar;
+	char mychar;
+	int i = 0;
+	int j = 0;
 	while ((mychar = fgetc(pfile)) != EOF)
+	{	
 		putchar(mychar);
+		
+		if (mychar == '*')
+		{
+			world[i][j] = ALIVE;
+			j++;
+		}
+		if (mychar == ' ')
+		{
+			world[i][j] = DEAD;
+			j++;
+		}
+		if (mychar == '\n')
+		{
+			i++;
+			j = 0;
+		}
+	}
 	putchar('\n');
-	//output_world();
+	
+	/*
 
 	//  5 - Assumue the ith character of the jth line(zero - indexed) describes	world[i][j] according to the characters CHAR_ALIVE and CHAR_DEAD
 	//	6 - Assume a line does not contain more than 256 characters(including newline).
@@ -67,9 +88,9 @@ void initialize_world_from_file(const char * filename) {
 	// 9-Reset the next generation to DEAD
 
 	//10 - Close the file
-	fclose(pfile);
+	//fclose(pfile);
 	//remove(filename);
-
+	*/
 }
 
 void save_world_to_file(const char * filename) {
@@ -83,8 +104,7 @@ void save_world_to_file(const char * filename) {
 	-This file should be readable using the function
 	initialize_world_from_file(filename) above; we can use
 	it to resume a game later
-	 */
-
+*/
 	FILE * sFile;
 	sFile = freopen(filename, "w", stdout);
 	if (sFile != NULL)
@@ -92,7 +112,6 @@ void save_world_to_file(const char * filename) {
 		output_world();
 		fclose(sFile);
 	}
-
 	return 0;
 }
 
@@ -100,6 +119,7 @@ void save_world_to_file(const char * filename) {
 
 /* initializes the world to a hard-coded pattern, and resets
    all the cells in the next generation to DEAD. This function doesn't draw anything */
+
 void initialize_world(void) {
 	int i, j;
 
