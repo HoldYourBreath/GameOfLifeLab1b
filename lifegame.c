@@ -26,32 +26,24 @@ static int nextstates[WORLDWIDTH][WORLDHEIGHT];
 void initialize_world_from_file(const char * filename) {
 	/* Description:
 	1-Open the file "filename"
-	2-Assume file exists, is readable
-	3-On error, print some useful error message and call abort(). //DONE
-	4-Read the state of the world from a file with name "filename". //I assume the state is the picture?
-	5-Assumue the ith character of the jth line (zero-indexed) describes world[i][j] according to the characters CHAR_ALIVE and CHAR_DEAD
-	6-Assume a line does not contain more than 256 characters (including newline). 
-	7-If a line doesn't contain WORLDWIDTH characters, remaining cells in line are presumed DEAD.
-	8-Similarly, if the file does not contain WORLDHEIGHT lines, remaining lines are presumed dead.
-	9-Reset the next generation to DEAD 
-	10-Close the file
+	2-On error, print some useful error message and call abort(). //DONE
+	3-Fill in the table world[i][j] with DEAD or ALIVE which is read from the file
+	4-Close the file
 	*/
 
-	// 1 - Open the file "filename"
+	// 1-Open the file "filename"
 	FILE *pfile;
 	pfile = fopen(filename, "r");
 
-	// 2-Assume file exists, is readable
- 	/*if (pfile == NULL)
+	// 2-On error, print some useful error message and call abort().
+ 	if (pfile == NULL)
 	{
-	//	3 - On error, print some useful error message and call abort().
 		printf("Oh dear, something went wrong with read()! %s\n", strerror(errno));
 		printf("Error opening %s for reading. Program terminated.", filename);
 		abort();
-	}*/
+	}
 
-	/* Read a characters from the file and display it */
-	//4 - Read the state of the world from a file with name "filename".
+	// 3-Fill in the table world[i][j] with DEAD or ALIVE which is read from the file
 	char mychar;
 	int i = 0;
 	int j = 0;
@@ -76,35 +68,15 @@ void initialize_world_from_file(const char * filename) {
 		}
 	}
 	putchar('\n');
-	
-	/*
 
-	//  5 - Assumue the ith character of the jth line(zero - indexed) describes	world[i][j] according to the characters CHAR_ALIVE and CHAR_DEAD
-	//	6 - Assume a line does not contain more than 256 characters(including newline).
-	//	7 - If a line doesn't contain WORLDWIDTH characters, remaining cells in line are presumed DEAD.
-	//	8 - Similarly, if the file does not contain WORLDHEIGHT lines, remaining lines are presumed dead.
-
-
-	// 9-Reset the next generation to DEAD
-
-	//10 - Close the file
-	//fclose(pfile);
-	//remove(filename);
-	*/
+	// 4-Close the file
+	fclose(pfile);
 }
 
 void save_world_to_file(const char * filename) {
 	/* Description:
-	-Save the final state of the world into a file with name "filename". 
-		-Same format as used in the initialization function
-		-Assume the file can be created
-		-if the file exists, overwrite the file. 
-	-The ith character of the jth line (zero-indexed) describes world[i][j]
-	using the characters CHAR_ALIVE and CHAR_DEAD
-	-This file should be readable using the function
-	initialize_world_from_file(filename) above; we can use
-	it to resume a game later
-*/
+	Save the final state of the world into a file with name "filename". 
+    */
 	FILE * sFile;
 	sFile = freopen(filename, "w", stdout);
 	if (sFile != NULL)
@@ -116,9 +88,6 @@ void save_world_to_file(const char * filename) {
 }
 
 /* you shouldn't need to edit anything below this line */
-
-/* initializes the world to a hard-coded pattern, and resets
-   all the cells in the next generation to DEAD. This function doesn't draw anything */
 
 void initialize_world(void) {
 	int i, j;
@@ -165,7 +134,6 @@ void finalize_evolution(void) {
 		}
 	}
 }
-
 
 // Output world set the current state of the world to stdout
 void output_world(void) {
